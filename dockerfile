@@ -1,4 +1,11 @@
+# Use a minimal Python image
 FROM python:3.12-slim-bookworm
+
+# Set build arguments for the API token (passed securely during build)
+ARG AIPROXY_TOKEN
+
+# Set environment variable for runtime access
+ENV AIPROXY_TOKEN=${AIPROXY_TOKEN}
 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
@@ -8,7 +15,7 @@ ADD https://astral.sh/uv/install.sh /uv-installer.sh
 RUN sh /uv-installer.sh && rm /uv-installer.sh
 
 # Install FastAPI and Uvicorn
-RUN pip install fastapi uvicorn
+RUN pip install --no-cache-dir fastapi uvicorn
 
 # Ensure the installed binary is on the `PATH`
 ENV PATH="/root/.local/bin:$PATH"
