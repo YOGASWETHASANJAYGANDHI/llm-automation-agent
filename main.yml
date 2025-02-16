@@ -19,6 +19,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Set API Token as Environment Variable
+        run: echo "API_TOKEN=${{ secrets.API_TOKEN }}" >> $GITHUB_ENV
+
       - name: Run LLM Automation Agent
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}  # Ensure API_TOKEN is available to FastAPI
         run: |
           uvicorn app:app --host 0.0.0.0 --port 8000
