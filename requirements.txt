@@ -9,3 +9,4 @@ numpy
 python-dateutil
 pytesseract
 scipy
+python-dotenv
