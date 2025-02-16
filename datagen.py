@@ -20,7 +20,7 @@ import time
 from PIL import Image, ImageDraw, ImageFont
 from faker import Faker
 
-config = {"root": "/Users/mamelane/Documents/projects/tds-trail-1/data"}
+config = {"root": "/data"}
 
 
 def num(str):
@@ -36,9 +36,9 @@ def get_markdown(email):
     return f"""#Unformatted Markdown
 
 This  is a sample paragraph with extra  spaces and trailing whitespace.
--   First item
--    Second item
-+Third item
+- First item
+- Second item
+    +Third item
     *    Fourth item
 
 ```py
@@ -276,7 +276,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("email")
-    parser.add_argument("--root", default="/Users/mamelane/Documents/projects/tds-trail-1/data")
+    parser.add_argument("--root", default="/data")
     args = parser.parse_args()
     config["email"] = args.email
     config["root"] = os.path.abspath(args.root)
