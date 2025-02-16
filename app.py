@@ -28,6 +28,25 @@ import re
 import httpx
 import json
 
+import sys
+import os
+
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+AIPROXY_TOKEN = os.getenv('AIPROXY_TOKEN')
+
+if not AIPROXY_TOKEN:
+    raise ValueError("🚨 API Proxy token is missing! Check your .env file.")
+
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from tasksA import *
+
 dotenv_path = ".env"
 load_dotenv(dotenv_path)
 print("Loaded API Key:", os.getenv("AIPROXY_TOKEN"))
